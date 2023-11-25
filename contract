@@ -1,1 +1,46 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeMath.sol";
+
+contract TokenSwap {
+    using SafeERC20 for IERC20;
+    using SafeMath for uint256;
+
+    address public owner;
+    IERC20 public tokenA; // Token A
+    IERC20 public tokenB; // Token B
+
+    constructor(address _tokenA, address _tokenB) {
+        owner = msg.sender;
+        tokenA = IERC20(_tokenA);
+        tokenB = IERC20(_tokenB);
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Not the owner");
+        _;
+    }
+
+    // Swap tokens and add to liquidity
+    function swapAndAddLiquidity(uint256 amountA, uint256 amountB) external onlyOwner {
+        // Transfer tokens from the contract caller
+        tokenA.safeTransferFrom(msg.sender, address(this), amountA);
+        tokenB.safeTransferFrom(msg.sender, address(this), amountB);
+
+        // Execute some token swap logic, for example, through a decentralized exchange
+        // In this example, we simulate the swap by changing balances between tokens
+        // Assumes you have your own exchange or some other method of token swap
+        uint256 swappedAmountA = amountA.mul(95).div(100); // 5% fee
+        uint256 swappedAmountB = amountB.mul(95).div(100); // 5% fee
+
+        // Add the swapped tokens to liquidity
+        // Here, it's also assumed that you have your own logic for adding to liquidity
+        // In this example, we simulate adding to liquidity by increasing balances of both tokens
+        tokenA.safeTransfer(msg.sender, swappedAmountA);
+        tokenB.safeTransfer(msg.sender, swappedAmountB);
+    }
+}
 
