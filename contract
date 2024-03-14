@@ -20,7 +20,6 @@ contract TokenSwap {
     }
     // Swap tokens and add to liquidity
     function swapAndAddLiquidity(uint256 amountA, uint256 amountB) external onlyOwner {
-        // Transfer tokens from the contract caller
         tokenA.safeTransferFrom(msg.sender, address(this), amountA);
         tokenB.safeTransferFrom(msg.sender, address(this), amountB);
 
