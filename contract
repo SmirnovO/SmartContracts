@@ -18,7 +18,6 @@ contract TokenSwap {
         require(msg.sender == owner, "Not the owner");
         _;
     }
-    // Swap tokens and add to liquidity
     function swapAndAddLiquidity(uint256 amountA, uint256 amountB) external onlyOwner {
         tokenA.safeTransferFrom(msg.sender, address(this), amountA);
         tokenB.safeTransferFrom(msg.sender, address(this), amountB);
