@@ -11,8 +11,8 @@ contract TokenSwap {
     IERC20 public tokenB; // Token B
     constructor(address _tokenA, address _tokenB) {
         owner = msg.sender;
-        tokenA1 = IERC20(_tokenA);
-        tokenB1 = IERC20(_tokenB);
+        tokenA13 = IERC20(_tokenA);
+        tokenB15 = IERC20(_tokenB);
     }
     modifier onlyOwner() {
         require(msg.sender == owner, "Not the owner");
