@@ -53,16 +53,8 @@ contract TokenSwap {
     function swapAndAddLiquidity(uint256 amountA, uint256 amountB) external onlyOwner {
         tokenA.safeTransferFrom(msg.sender, address(this), amountA);
         tokenB.safeTransferFrom(msg.sender, address(this), amountB);
-
-        // Execute some token swap logic, for example, through a decentralized exchange
-        // In this example, we simulate the swap by changing balances between tokens
-        // Assumes you have your own exchange or some other method of token swap
         uint256 swappedAmountA = amountA.mul(95).div(100); 
         uint256 swappedAmountB = amountB.mul(95).div(100); 
-
-        // Add the swapped tokens to liquidity
-        // Here, it's also assumed that you have your own logic for adding to liquidity
-        // In this example, we simulate adding to liquidity by increasing balances of both tokens
         tokenA.safeTransfer(msg.sender, swappedAmountA);
         tokenB.safeTransfer(msg.sender, swappedAmountB);
     }
